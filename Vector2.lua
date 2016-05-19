@@ -1,7 +1,5 @@
 local vec2 = {}
 
---Require this code in main.lua under love.load() so it can be used everywhere.
-
 function vec2.new(x, y)
 	local x = x or 0
 	local y = y or 0
@@ -56,22 +54,16 @@ function vec2.new(x, y)
 		return "["..tostring(a.X)..", "..tostring(a.Y).."]"
 	end
 	--
-	v.Magnitude = function (a)
-		if getmetatable(a) ~= "Vector2" then
-			return vec2.new()
-		end
-		local x = a.X
-		local y = a.Y
+	v.Magnitude = function ()
+		local x = v.X
+		local y = v.Y
 		return math.sqrt((x^2)+(y^2))
 	end
-	v.Unit = function (a)
-		if getmetatable(a) ~= "Vector2" then
-			return vec2.new()
-		end
-		local x = a.X
-		local y = a.Y
+	v.Unit = function ()
+		local x = v.X
+		local y = v.Y
 		local d = math.sqrt((x^2)+(y^2))
-		local dir = a / vec2.new(d, d)
+		local dir = v / vec2.new(d, d)
 		return dir
 	end
 	function v:lerp(a, frac)
